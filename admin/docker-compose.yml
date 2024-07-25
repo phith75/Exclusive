@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  vuejs:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: my_admin_app
+    container_name: admin_app
+    volumes:
+      - .:/app
+      - /app/node_modulesJ
+    ports:
+      - "${VUEJS_PORT:-8080}:80"
+    env_file:
+      - .env
+    networks:
+      - books
+
+networks:
+  books:
